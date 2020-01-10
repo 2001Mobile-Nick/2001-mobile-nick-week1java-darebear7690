@@ -1,6 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,8 +31,21 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		
+		//scan first 
+		String[] acronymRun = phrase.split("\\W+");
+		
+		StringBuilder answer = new StringBuilder();
+		
+		for (int i = 0; i < acronymRun.length; i++) {
+			
+			char c  = Character.toUpperCase(acronymRun[i].charAt(0)); 
+			
+			answer = answer.append(c);
+		}
+		
+		return answer.toString();
+//		 return (answer.append(acronymRun[i].charAt(0))).toString();}
 	}
 
 	/**
@@ -84,17 +98,23 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
+			if (sideOne == sideTwo & sideTwo == sideThree)
+			return true;
 			return false;
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
+			if ((sideOne == sideTwo && sideOne == sideThree) ||
+				    (sideTwo == sideThree && sideTwo == sideOne) ||
+				    (sideThree == sideOne && sideThree == sideTwo))
+		return true;
+				else 
 			return false;
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
+			if ((sideOne != sideTwo && sideTwo != sideThree && sideThree != sideOne))
+			return true;
 			return false;
 		}
 
@@ -116,9 +136,42 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
+		
+		HashMap<Character, Integer> scrabbleValues = new HashMap<Character, Integer>();
+		scrabbleValues.put('A' , 1);
+		scrabbleValues.put('E' , 1);
+		scrabbleValues.put('I', 1);
+		scrabbleValues.put('O', 1);
+		scrabbleValues.put('U',1);
+		scrabbleValues.put('L',1);
+		scrabbleValues.put('N',1);
+		scrabbleValues.put('R',1);
+		scrabbleValues.put('S',1);
+		scrabbleValues.put('T',1);
+		scrabbleValues.put('D',2);
+		scrabbleValues.put('G',2);
+		scrabbleValues.put('B',3);
+		scrabbleValues.put('C',3);
+		scrabbleValues.put('M',3);
+		scrabbleValues.put('P',3);
+		scrabbleValues.put('F',4);
+		scrabbleValues.put('H',4);
+		scrabbleValues.put('V',4);
+		scrabbleValues.put('W',4);
+		scrabbleValues.put('Y',4);
+		scrabbleValues.put('K',5);
+		scrabbleValues.put('J',8);
+		scrabbleValues.put('X',8);
+		scrabbleValues.put('Q',10);
+		scrabbleValues.put('Z',10);
+		
+		System.out.println("This is the hashmap" + scrabbleValues.get('Q')); 
 		return 0;
-	}
+		}
+		public static void main(String[] args)
+		{
+			
+		}
 
 	/**
 	 * 5. Clean up user-entered phone numbers so that they can be sent SMS messages.
